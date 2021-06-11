@@ -1,0 +1,303 @@
+*{
+    padding: 00;
+    margin: 00;
+    box-sizing: border-box;
+}
+//for colors
+$color1: #f8f9fa;
+$color2: #adb5bd;
+$color3: #495057;
+$color4: #0a0b0c;
+
+//for background
+//@include backgroundProp
+@mixin backgroundProp {
+  background: {
+    position: center;
+    size: cover;
+    repeat: no-repeat;
+  }
+}
+
+//for display:flex
+$column: column;
+$row: row;
+$center: center;
+$flexStart: flex-start;
+$flexEnd: flex-end;
+$spaceBetween: space-between;
+
+//@include flexBetween($column, $center, $center);
+@mixin flexBetween($column, $center, $spaceBetween) {
+  display: flex;
+  flex-direction: $column;
+  justify-content: $spaceBetween;
+  align-items: $center;
+}
+
+//for padding
+// @include paddingValue($paddingTop, $paddingRight, $paddingBottom, $paddingLeft);
+$paddingTop: 20px;
+$paddingRight: 20px;
+$paddingBottom: 20px;
+$paddingLeft: 20px;
+
+@mixin paddingValue($paddingTop, $paddingRight, $paddingBottom, $paddingLeft) {
+  padding: {
+    top: $paddingTop;
+    right: $paddingRight;
+    bottom: $paddingBottom;
+    left: $paddingLeft;
+  }
+}
+
+//for borders
+// @include borderTopProp($borderWidth, $borderStyle, $borderColor);
+
+$borderWidth: 1px;
+$borderStyle: solid;
+$borderColor: rgb(165, 165, 165);
+
+@mixin borderBottomProp($borderWidth, $borderStyle, $borderColor) {
+  border-bottom: $borderWidth $borderStyle $borderColor;
+}
+
+body{
+    background-color: #495057;
+    width:100vw;
+}
+.container{
+    position: absolute;
+    background-color: #a5a5a5;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @media only screen and (max-width:600px){
+        @include flexBetween($column, $center, $center);
+        width: 100vw;
+        background-color: white;
+    }
+    @media only screen and (min-width:601px){
+        @include flexBetween($column, $center, $center); 
+        width: 100vw;  
+        background-color: white;
+    }
+    @media only screen and (min-width:768px){
+        
+    }
+    @media only screen and (min-width:992px){
+        
+    }
+    @media only screen and (min-width:1200px){
+        @include flexBetween($row, $center, $center);
+        width: 75%;
+        height: 80vh;
+    }
+}
+#logo{
+    @media only screen and (max-width:600px){
+        height: 50vh;
+        width: 100%;
+        background-image: url("/static/images/gpi.png");
+        @include backgroundProp();
+    }
+    @media only screen and (min-width:601px){
+        height: 50vh;
+        width: 100%;
+        background-image: url("/static/images/gpi.png");
+        @include backgroundProp();
+    }
+    @media only screen and (min-width:768px){
+        height: 50vh;
+        width: 100%;
+    }
+    @media only screen and (min-width:992px){
+        height: 50vh;
+        width: 100%;
+        
+    }
+    @media only screen and (min-width:1200px){
+        height: 100%;
+        width: 50%;
+        background-image: url("/static/images/gpi.png");
+        @include backgroundProp();
+    }
+    @media only screen and (max-device-width:600px) and (orientation:landscape), (min-device-width:601px) and (max-device-width: 992px) and (orientation:landscape){
+        height: 900px;
+        width: 100%;
+        background-image: url("/static/images/gpi.png");
+        @include backgroundProp();
+        background-position: top;
+    }
+}
+#form-container{
+    @include flexBetween($column, $center, $center);
+    @media only screen and (max-width:600px){
+        @include paddingValue(10px, $paddingRight, 10px, $paddingLeft);
+        height: 50vh;
+        width: 100%;
+        #title{
+            justify-self: flex-start;
+            height: 70px;
+            h1{
+                text-align: center;
+                @include paddingValue(10px, 10px, 10px, 10px);
+            }
+            h4{
+                font-style: italic;
+                text-align: center;
+            }
+        }
+       
+        form{
+            @include flexBetween($column, $center, $center);
+            height: calc(50vh - 90px);
+            width: calc(100vw - 40px);
+            label{
+                    @include paddingValue($paddingTop, $paddingRight, 0, $paddingLeft);
+                    align-self: $flexStart;
+                    color: rgb(165, 165, 165);
+                    font-size: 0.8rem;
+                }
+                
+            input{
+                width: calc(100% - 10px);
+                @include paddingValue(5px, 15px, 5px, 15px);
+                border: none;
+                @include borderBottomProp(2px, $borderStyle, $borderColor);
+            }
+            button{
+                background-color: #495057;
+                color: rgb(255, 255, 255);
+                @include paddingValue(8px, 60px, 8px, 60px);
+                margin-top: 20px;
+                border-radius: 25px;
+                &:hover{
+                    background-color: rgb(12, 134, 71);
+                }
+
+            }
+        }
+        
+    }
+    @media only screen and (min-width:601px){
+        @include paddingValue($paddingTop, $paddingRight, $paddingBottom, $paddingLeft);
+        height: 50vh;
+        width: 100%;
+        #title{
+            justify-self: flex-start;
+            height: 100px;
+            h1{
+                text-align: center;
+                @include paddingValue(10px, 10px, 10px, 10px);
+            }
+            h4{
+                font-style: italic;
+                text-align: center;
+            }
+        }
+        
+        form{
+            @include flexBetween($column, $center, $center);
+            height: calc(50vh - 140px);
+            width: calc(100vw - 40px);
+            label{
+                @include paddingValue($paddingTop, $paddingRight, 0, $paddingLeft);
+                align-self: $flexStart;
+                color: rgb(165, 165, 165);
+                font-size: 0.8rem;
+            }
+            
+            input{
+                width: calc(100% - 10px);
+                @include paddingValue(5px, 15px, 5px, 15px);
+                border: none;
+                @include borderBottomProp(2px, $borderStyle, $borderColor);
+            }
+            button{
+                background-color: #495057;
+                color: rgb(255, 255, 255);
+                @include paddingValue(8px, 60px, 8px, 60px);
+                margin-top: 20px;
+                border-radius: 25px;
+                &:hover{
+                    background-color: rgb(12, 134, 71);
+                }
+            }
+        }
+    }
+    @media only screen and (min-width:768px){
+        @include paddingValue(40px, 40px, 40px, 40px);
+        form{
+            @include flexBetween($column, $center, $center);
+            height: calc(50vh - 180px);
+            width: calc(100vw - 80px);
+        }
+    }
+    @media only screen and (min-width:992px){
+        @include paddingValue(40px, 60px, 40px, 60px);
+        form{
+            @include flexBetween($column, $center, $center);
+            height: calc(50vh - 220px);
+        }
+    }
+    @media only screen and (min-width:1200px){
+        @include paddingValue($paddingTop, $paddingRight, $paddingBottom, $paddingLeft);
+        width: 50%;
+        height: 100%;
+        form{
+            @include flexBetween($column, $center, $center);
+            height: calc(100% - 180px);
+            width: calc(100% - 80px);
+            label{
+                @include paddingValue($paddingTop, $paddingRight, 0, $paddingLeft);
+                align-self: $flexStart;
+                color: rgb(165, 165, 165);
+                font-size: 0.8rem;
+            }
+            
+            input{
+                width: calc(100% - 10px);
+                @include paddingValue(5px, 15px, 5px, 15px);
+                border: none;
+                @include borderBottomProp(2px, $borderStyle, $borderColor);
+            }
+            button{
+                background-color: #495057;
+                color: rgb(255, 255, 255);
+                @include paddingValue(8px, 60px, 8px, 60px);
+                margin-top: 20px;
+                border-radius: 25px;
+                &:hover{
+                    background-color: rgb(12, 134, 71);
+                }
+            }
+        }
+    }
+    @media only screen and (max-device-width:600px) and (orientation:landscape), (min-device-width:601px) and (max-device-width: 992px) and (orientation:landscape){
+        @include paddingValue(40px, 40px, 40px, 40px);
+        height: 500px;
+        width: 100%;
+        #title{
+            justify-self: flex-start;
+            height: 100px;
+            h1{
+                text-align: center;
+                @include paddingValue(10px, 10px, 10px, 10px);
+            }
+            h4{
+                font-style: italic;
+                text-align: center;
+            }
+        }
+      
+        form{
+            @include flexBetween($column, $center, $center);
+            height: calc(500px - 180px);
+            width: calc(100% - 80px);
+        }
+
+    }
+    
+}
+
